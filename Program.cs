@@ -1,26 +1,17 @@
 ﻿using System;
+using System.Linq;
 
-namespace Task_1
+namespace Task_2
 {
     internal class Program
     {
         static void Main(string[] args)
         {
-            char[] str = Console.ReadLine().ToCharArray();
-            int punctuationCount = 0;
-            for (int i = 0; i < str.Length; i++)
-            {
-                if (Char.IsPunctuation(str[i]))
-                {
-                    punctuationCount++;
-                }
-                if (Char.IsLetter(str[i]))
-                {
-                    str[i] = '*';
-                }
-            }
-            Console.Write("Измененная строка: ");
-            Console.WriteLine(str);
+            String str = Console.ReadLine();
+            String modifiedStr = new String(str.Select(s => Char.IsLetter(s) ? '*' : s).ToArray());
+            int punctuationCount = str.Count(s => Char.IsPunctuation(s));
+
+            Console.WriteLine("Измененная строка: " + modifiedStr);
             Console.WriteLine("Количество знаков препинания: " + punctuationCount);
         }
     }
